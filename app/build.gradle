@@ -16,6 +16,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        dataBinding = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -39,4 +43,10 @@ dependencies {
 
     // Gson library for converting json string to object and vice versa
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+    // Library for circular image component
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // Library for downloading image from URL and render on image component
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 }
