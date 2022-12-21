@@ -18,5 +18,5 @@
 
 ## Screenshots
 
-<img src="/readme/pets_list.png" width="200" align="left">
-<img src="/readme/pets_details.png" width="200" align="center">
+<img src="/readme/pets_list.jpg" width="200" align="left">
+<img src="/readme/pets_details.jpg" width="200" align="center">
