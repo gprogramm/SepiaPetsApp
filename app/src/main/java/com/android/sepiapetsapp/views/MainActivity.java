@@ -85,6 +85,8 @@ public class MainActivity extends AppCompatActivity implements PetsCallback {
 
     @Override
     public void onItemClick(PetsDto.PetsList pet, int position) {
-
+        Intent intent = new Intent(this, PetsDetailsActivity.class);
+        intent.putExtra("content_url", pet.getContent_url());
+        startActivity(intent);
     }
 }
