@@ -4,7 +4,9 @@ import android.text.TextUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.TimeZone;
 
 public class DateUtils {
@@ -57,5 +59,54 @@ public class DateUtils {
         }
 
         return formatted;
+    }
+
+    /**
+     * This method check the current time is in between the given time range or not.
+     *
+     * @param fromTime
+     * @param toTime
+     * @return true if current time is in given range, otherwise false
+     */
+    public static boolean checkCurrentTimeInBetweenDates(String fromTime, String toTime) {
+        Calendar calFrom = getCalenderFromTimeString(fromTime);
+        Calendar calTo = getCalenderFromTimeString(toTime);
+        Calendar calCurrent = getCalenderFromTimeString(getCurrentHourMin());
+
+        Date res = calCurrent.getTime();
+
+        //check whether the current time is between from and to
+        return res.after(calFrom.getTime()) && res.before(calTo.getTime());
+    }
+
+    /**
+     * Get the calender object from time string.
+     *
+     * @param timeInHourMin
+     * @return
+     */
+    private static Calendar getCalenderFromTimeString(String timeInHourMin) {
+        Calendar calendar = null;
+        try {
+            Date time = new SimpleDateFormat("HH:mm").parse(timeInHourMin);
+            calendar = Calendar.getInstance();
+            calendar.setTime(time);
+            calendar.add(Calendar.DATE, 1);
+        } catch (Exception pe) {
+            pe.printStackTrace();
+        }
+
+        return calendar;
+    }
+
+    /**
+     * This method returns the current time in HH:mm format
+     *
+     * @return
+     */
+    private static String getCurrentHourMin() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        return dateFormatter.format(calendar.getTime());
     }
 }

@@ -2,6 +2,7 @@ package com.android.sepiapetsapp.utils;
 
 import android.content.Context;
 
+import com.android.sepiapetsapp.dtos.ConfigDto;
 import com.android.sepiapetsapp.dtos.PetsDto;
 import com.google.gson.Gson;
 
@@ -25,6 +26,12 @@ public class ReadJsonFiles {
         return readAssetsJson;
     }
 
+    /**
+     * Read the pets list from pets_list json file
+     *
+     * @param context
+     * @return
+     */
     public ArrayList<PetsDto.PetsList> fetchPetsList(Context context) {
 
         BufferedReader reader = null;
@@ -38,5 +45,26 @@ public class ReadJsonFiles {
         PetsDto petsDto = new Gson().fromJson(reader, PetsDto.class);
 
         return petsDto.getPets();
+    }
+
+    /**
+     * Read the settings from config json file
+     *
+     * @param context
+     * @return
+     */
+    public ConfigDto fetchSettings(Context context) {
+
+        BufferedReader reader = null;
+
+        try {
+            reader = new BufferedReader(new InputStreamReader(context.getAssets().open("config.json"), "UTF-8"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ConfigDto configDto = new Gson().fromJson(reader, ConfigDto.class);
+
+        return configDto;
     }
 }

@@ -18,11 +18,13 @@ import com.android.sepiapetsapp.utils.ReadJsonFiles;
 
 import java.util.ArrayList;
 
+/**
+ * This activity is for pets list. Data is being fetched from json and rendering on recycle view
+ */
 public class MainActivity extends AppCompatActivity implements PetsCallback {
 
     private PetsAdapter adapter;
     private RecyclerView recyclerView;
-    private TextView txtNoRecFound;
     private ProgressBar progressBar;
 
     @Override
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements PetsCallback {
         setUpRecyclerView();
 
         // Initialize other components
-        txtNoRecFound = (TextView) findViewById(R.id.txt_no_rec_found);
+        //txtNoRecFound = (TextView) findViewById(R.id.txt_no_rec_found);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
     }
 
